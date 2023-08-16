@@ -3,22 +3,21 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import HppForm from "./HppForm";
-import HppFormRow from "./HppFormRow";
-import HppFormField from "./HppFormField";
 import RenderHtml from "./RenderHtml";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-fetch("page.html")
+fetch("./page.html")
     .then((response) => response.text())
     .then((html) => {
         root.render(
-            <App>
-                <RenderHtml>
-                    {html}
-                </RenderHtml>
-            </App>
+            <React.StrictMode>
+                <App>
+                    <RenderHtml>
+                        {html}
+                    </RenderHtml>
+                </App>
+            </React.StrictMode>
         );
     });
 
@@ -28,3 +27,16 @@ fetch("page.html")
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+window.doThatMagic = function(html)
+{
+    root.render(
+        <React.StrictMode>
+            <App>
+                <RenderHtml>
+                    {html}
+                </RenderHtml>
+            </App>
+        </React.StrictMode>
+    );
+}
